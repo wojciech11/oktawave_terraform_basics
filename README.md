@@ -146,37 +146,42 @@
    $ curl -X GET \
        --header 'Accept: application/json' \
        --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-       'https://api.oktawave.com/beta/dictionaries/'
+       'https://pl1-api.oktawave.com/services/dictionaries/'
 
     $ curl -X GET \
        --header 'Accept: application/json' \
        --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-       'https://api.oktawave.com/beta/dictionaries/' | jq 
+       'https://pl1-api.oktawave.com/services/dictionaries/' | jq 
 
     # znajdzmy wartość dla authorization_method_id
     $ curl -X GET \
        --header 'Accept: application/json' \
        --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-       'https://api.oktawave.com/beta/dictionaries/' | jq | \
+       'https://pl1-api.oktawave.com/services/dictionaries/' | jq | \
        grep -B 1 'Instance authorization methods'
 
     $ curl -X GET --header 'Accept: application/json' \
       --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-      'https://api.oktawave.com/beta/dictionaries/159' | jq
+      'https://pl1-api.oktawave.com/services/dictionaries/159' | jq
 
     # disk class? 
     $ curl -X GET \
        --header 'Accept: application/json' \
        --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-       'https://api.oktawave.com/beta/dictionaries/' | jq | \
+       'https://pl1-api.oktawave.com/services/dictionaries/' | jq | \
        grep -B 1 'Disk'
 
     $ curl -X GET --header 'Accept: application/json' \
       --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
-      'https://api.oktawave.com/beta/dictionaries/17' | jq
+      'https://pl1-api.oktawave.com/services/dictionaries/17' | jq
+
+# sprawdzenie dostępnych ID szablonów (template_id)
+    $ curl -X GET --header 'Accept: application/json' \
+      --header "Authorization: Bearer ${TF_VAR_oktawave_access_token}" \
+      'https://pl1-api.oktawave.com/services/templates' |jq
    ```
 
-   Jak znaleźć właściwe wartości korzystając z https://api.oktawave.com/beta/docs/index#!/Account/Account_GetSshKeys:
+   Jak znaleźć właściwe wartości korzystając z https://pl1-api.oktawave.com/services/docs/index#!/Account/Account_GetSshKeys:
 
 8. Czy znasz to uczucie, kiedy chcesz utworzyć zasoby w chmurze ale nie wiesz jakie to konsekwencje za sobą niesie. Z terraformem nie musisz się bać:
 
