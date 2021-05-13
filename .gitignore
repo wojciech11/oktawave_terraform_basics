@@ -3,3 +3,4 @@ terraform
 terraform-provider-oktawave
 *.zip
 terraform.tfstate
+.terraform.tfstate.*
