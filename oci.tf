@@ -4,7 +4,9 @@ resource "oktawave_oci" "my_oci" {
 instance_name="TERRAFORM_OCI"
 
 # OCI AUTH METOD:
-authorization_method_id=1399
+authorization_method_id=var.authorization_method_id
+
+ssh_keys_ids = [oktawave_sshKey.my_key.id]
 
 # OVS (STORAGE) PARAMETERS:
 # disk class (tier)
