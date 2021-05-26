@@ -229,7 +229,7 @@
    root@120018-1-168c65-01:~# apt-get update; apt-get install -y nginx
    ```
 
-   Zauważ: właściwym sposobem zabezpieczeniem logowanie jest użycie kluczy ssh. My tutaj operujemy na haśle i użytkowniku TYLKO dla uproszczenia.
+   Zauważ: właściwym sposobem zabezpieczeniem logowanie jest użycie kluczy ssh. My tutaj operujemy na haśle i użytkowniku TYLKO dla uproszczenia. Poniżej, w dodatkowym zadaniu, znajdziesz informację jak wstrzyknąć swój klucz publiczny do maszyny wirtualnej.
 
    [Dodatkowe] Zainstalować i skonfigurować serwer www serwujący ruch na HTTPS.
 
@@ -255,3 +255,36 @@
     ```
     $ terraform destroy
     ```
+
+14. [Dodatkowe] Jak dodać swój klucz publiczny ssh (`cat ~/.ssh/id_rsa.pub`), aby logować się za pomocą kluczy:
+
+    1. Dodajemy klucz:
+
+      ```terraform
+      resource "oktawave_sshKey" "my_key"{
+        # Required: true
+        # Type: string
+        # ForceNew: true
+        # Available values: string of available length that represent name of ssh key
+        ssh_key_name="my_ssh_pub_key"
+
+        # Required: true
+        # Type: string
+        # ForceNew: true
+        # Available values: ssh-rsa key value
+        ssh_key_value="ssh-rsa AAAAB3NXXX==  user@computer"
+      }
+      ```
+
+    2. Zmieniamy w definicji maszyny:
+
+      ```terraform
+      resource "oktawave_oci" "my_oci" {
+        ...
+
+        authorization_method_id="1398"
+
+        ssh_keys_ids = [oktawave_sshKey.my_key.id]
+        ...
+      }
+      ```
