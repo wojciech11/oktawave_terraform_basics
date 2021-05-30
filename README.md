@@ -3,9 +3,10 @@
 1. Zainstaluj Terraform 0.12.x (do pobrania z https://releases.hashicorp.com/terraform/):
 
    ```
+   # gdy pracujesz na linuxie: export UNAME=linux
    $ export UNAME=darwin
    $ wget https://releases.hashicorp.com/terraform/0.12.30/terraform_0.12.30_${UNAME}_amd64.zip
-   $ unzip terraform_0.12.30_${UNAME}_amd64.zip && rm terraform_0.12.30_${UNAME}_amd64.zip
+   $ unzip terraform_0.12.30_${UNAME}_amd64.zip && rm -f terraform_0.12.30_${UNAME}_amd64.zip
    $ export PATH=$(pwd):${PATH}
 
    $ terraform --version
@@ -19,7 +20,7 @@
    ```
    $ export UNAME=darwin
    $ wget https://github.com/oktawave-code/terraform-provider-oktawave/releases/download/v0.4.0/terraform_${UNAME}_amd64
-   $ terraform_${UNAME}_amd64 terraform-provider-oktawave && chmod +x terraform-provider-oktawave
+   $ mv terraform_${UNAME}_amd64 terraform-provider-oktawave && chmod +x terraform-provider-oktawave
 
    # zobaczmy czy mamy wszystko gotowe:
    $ ls
